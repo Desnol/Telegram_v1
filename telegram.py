@@ -58,7 +58,7 @@ def IncomingConnectionPost():
 
         print("UnJSONed: " + str(json.loads(json_string)))
 
-        update = json_string.json()
+        update = json.loads(json_string)
         content = ''
         try:
             requestItilium = requests.post(address_api_itilium, data=json.dumps(json_string), auth=(login_itilium, password_itilium))
