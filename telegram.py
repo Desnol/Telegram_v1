@@ -49,6 +49,16 @@ def removeWebHook():
 @app.route('/' + auth_key,  methods=['POST'])
 def IncomingConnectionPost():
     print("new message")
+    if Flask.request.headers.get('content-type') == 'application/json':
+        json_string = Flask.request.get_data().decode('utf-8')
+        try:
+            print(json_string)
+        except:
+            print(str(json_string))
+        return ''
+    else:
+        Flask.abort(403)
+
     return Response(status=200)
 
 
