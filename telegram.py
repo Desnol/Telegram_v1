@@ -56,7 +56,7 @@ def IncomingConnectionPost():
         except:
             print(str(json_string))
 
-        print("UnJSONed: " + str(json_string.json()))
+        print("UnJSONed: " + str(json.loads(json_string)))
 
         # update = json_string.json()
         # content = ''
