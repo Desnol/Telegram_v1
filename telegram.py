@@ -14,13 +14,11 @@ auth_key = os.environ['AuthKey']
 @app.route('/getWebhookInfo',  methods=['GET'])
 def getWebHookInfo():
     # это только на время теста, надо скрывать в продакшене
-    print("getWebHookInfo")
     ret = requests.post("https://api.telegram.org/bot" + auth_key + "/getWebhookInfo")
     return ret.text
 
 @app.route('/setWebHook',  methods=['GET'])
 def setWebHook():
-    print("setWebHook")
     dict_data = dict()
     address = request.url.replace("setWebHook",auth_key)
     print(address)
@@ -38,7 +36,6 @@ def setWebHook():
 
 @app.route('/removeWebHook',  methods=['GET'])
 def removeWebHook():
-    print("removeWebHook")
     dict_data = dict()
     dict_data.update( {"url": ""} )
     
@@ -54,9 +51,5 @@ def IncomingConnectionPost():
     print("new message")
     return Response(status=200)
 
-if __name__ == '__main__':
-    print("start App")
-    setWebHook()
-    getWebHookInfo()
 
 
