@@ -49,8 +49,8 @@ def removeWebHook():
 @app.route('/' + auth_key,  methods=['POST'])
 def IncomingConnectionPost():
     print("new message")
-    if request.headers.get('content-type') == 'application/json':
-        json_string = request.get_data().decode('utf-8')
+    if requests.headers.get('content-type') == 'application/json':
+        json_string = requests.get_data().decode('utf-8')
         try:
             print(json_string)
         except:
