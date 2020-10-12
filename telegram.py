@@ -51,5 +51,7 @@ def IncomingConnectionPost():
     print("new message")
     return Response(status=200)
 
-setWebHook()
+if __name__ == '__main__':
+    setWebHook()
+
 
