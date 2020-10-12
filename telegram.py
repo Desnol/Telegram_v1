@@ -8,7 +8,7 @@ app = Flask(__name__)
 address_api_itilium = os.environ['AddressApiItilium']
 login_itilium = os.environ['LoginItilium']
 password_itilium = os.environ['PasswordItilium']
-auth_key =  os.environ['AuthKey'] 
+auth_key = os.environ['AuthKey']
 
 
 @app.route('/getWebhookInfo',  methods=['GET'])
@@ -52,6 +52,8 @@ def IncomingConnectionPost():
     return Response(status=200)
 
 if __name__ == '__main__':
+    print("start setWebHook")
     setWebHook()
+    getWebHookInfo()
 
 
