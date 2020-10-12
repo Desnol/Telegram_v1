@@ -58,36 +58,31 @@ def IncomingConnectionPost():
 
         print("UnJSONed: " + str(json_string.json()))
 
-        update = json_string.json()
-        content = ''
-        try:  # обрабатываем исключения
-            requestItilium = requests.post(address_api_itilium, data=json.dumps(json_string), auth=(login_itilium, password_itilium))
-
-            if requestItilium.status_code == 200 and requestItilium.ok != False:
-                content = requestItilium.content
-
-                if content != 'Действие не найдено!':
-                    content = json.loads(content)
-        except:
-            print('Error getting data in Itilium')
-            return False
-
-        message_data = {  # формируем информацию для отправки сообщения
-            'chat_id': update['message']['chat']['id'],  # куда отправляем сообщение
-            'text': "I'm <b>bot</b>",  # само сообщение для отправки
-            'reply_to_message_id': update['message']['message_id'],
-            # если параметр указан, то бот отправит сообщение в reply
-            'parse_mode': 'HTML'  # про форматирование текста ниже
-        }
-
-        try:
-            request = requests.post('https://api.telegram.org/bot' + auth_key + '/sendMessage', data=content)  # запрос на отправку сообщения
-        except:
-            print('Send message for user error')
-            return False
-
-        if not request.status_code == 200:  # проверим статус пришедшего ответа
-            return False
+        # update = json_string.json()
+        # content = ''
+        # try:  # обрабатываем исключения
+        #     requestItilium = requests.post(address_api_itilium, data=json.dumps(json_string), auth=(login_itilium, password_itilium))
+        #
+        #     if requestItilium.status_code == 200 and requestItilium.ok != False:
+        #         content = requestItilium.content
+        #
+        #         if content != 'Действие не найдено!':
+        #             content = json.loads(content)
+        # except:
+        #     print('Error getting data in Itilium')
+        #
+        # message_data = {  # формируем информацию для отправки сообщения
+        #     'chat_id': update['message']['chat']['id'],  # куда отправляем сообщение
+        #     'text': "I'm <b>bot</b>",  # само сообщение для отправки
+        #     'reply_to_message_id': update['message']['message_id'],
+        #     # если параметр указан, то бот отправит сообщение в reply
+        #     'parse_mode': 'HTML'  # про форматирование текста ниже
+        # }
+        #
+        # try:
+        #     request = requests.post('https://api.telegram.org/bot' + auth_key + '/sendMessage', data=content)  # запрос на отправку сообщения
+        # except:
+        #     print('Send message for user error')
 
 
     return Response(status=200)
