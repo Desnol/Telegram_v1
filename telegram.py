@@ -69,17 +69,17 @@ def IncomingConnectionPost():
         except:
             print('Error getting data in Itilium')
 
-        message_data = {  # формируем информацию для отправки сообщения
-            'chat_id': update['message']['chat']['id'],  # куда отправляем сообщение
-            'text': "I'm <b>bot</b>",  # само сообщение для отправки
-            'reply_to_message_id': update['message']['message_id'],
-            # если параметр указан, то бот отправит сообщение в reply
-            'parse_mode': 'HTML'  # про форматирование текста ниже
-        }
-
-        try:
-            requestTelegram = requests.post('https://api.telegram.org/bot' + auth_key + '/sendMessage', data=content)
-        except:
-            print('Send message for user error')
+        # message_data = {  # формируем информацию для отправки сообщения
+        #     'chat_id': update['message']['chat']['id'],  # куда отправляем сообщение
+        #     'text': "I'm <b>bot</b>",  # само сообщение для отправки
+        #     'reply_to_message_id': update['message']['message_id'],
+        #     # если параметр указан, то бот отправит сообщение в reply
+        #     'parse_mode': 'HTML'  # про форматирование текста ниже
+        # }
+        #
+        # try:
+        #     requestTelegram = requests.post('https://api.telegram.org/bot' + auth_key + '/sendMessage', data=content)
+        # except:
+        #     print('Send message for user error')
 
     return Response(status=200)
