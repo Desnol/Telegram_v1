@@ -49,6 +49,7 @@ def removeWebHook():
 @app.route('/' + auth_key, methods=['POST'])
 def IncomingConnectionPost():
     print("new message")
+    print(request.headers.get('content-type') == 'application/json')
     if request.headers.get('content-type') == 'application/json':
         json_string = request.get_data().decode('utf-8')
 
@@ -60,9 +61,10 @@ def IncomingConnectionPost():
         try:
             request_itilium = requests.post(address_api_itilium, data=json_string,
                                             auth=(login_itilium, password_itilium))
-
+            print("запрос отправлен")
             if request_itilium.status_code == 200 and request_itilium.ok:
                 content = request_itilium.content
+                print("Код 200 получен")
 
                 if content != 'Действие не найдено!':
                     content = json.loads(content)
